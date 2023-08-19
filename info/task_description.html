@@ -1,0 +1,69 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    An hourglass is given as a {% if is_js %}array <b>[upper, lower]</b>{% else %}tuple <b>(upper, lower)</b>{% endif %} for the number of minutes of sand that are currently stored in its upper and lower chambers, both chambers large enough to hold all of the sand in that hourglass. So after <b>m</b> minutes of time has elapsed, the state of that particular hourglass will be <b>upper - min(upper, m), lower + min(upper, m)</b>. The total amount of sand inside the hourglass never changes, nor will either chamber ever contain negative anti-sand.
+</p>
+<p style="text-align: justify;">
+    Given a list of <b>glasses</b>, your task is to find an optimal sequence of moves to measure exactly <b>t</b> minutes, scored as the number of individual hourglass flips performed along the way. Each move consists of two stages:
+</p>
+
+<ul>
+    <li>you must first wait for the hourglass that currently holds the lowest non zero amount <b>m</b> of sand in its upper chamber to run out.</li>
+    <li>when that happens, choose <strong>any subset</strong> of <b>glasses</b> and instantaneously flip this chosen subset.</li>
+</ul>
+
+<p>
+    Look at the example for <b>[{% if is_js %}[7, 0], [11, 0]{% else %}(7, 0), (11, 0){% endif %}], 15</b> case. You can find an explanation for slightly changed case in a <a href="https://www.popularmechanics.com/science/math/a27496/riddle-of-the-week-33-the-hourglass-problem/">Polular Mechanics article</a>.
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}flip-of-time-2.png" alt="example" style="max-height: 300px"/>
+</p>
+
+<p>
+   You don’t have any choice in waiting in the first stage, but in the second stage you enjoy an embarrassment of riches of 2<sup>n</sup> – 1 possible moves for <b>n</b> glasses!
+</p>
+<p style="text-align: justify;">
+    This function should return <strong>the smallest possible number of individual hourglass flips</strong> needed to measure exactly <b>t</b> minutes, or {% if is_js %}null{% else %}None{% endif %} if this exact measurement is impossible.  
+</p>
+
+
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input:</strong> Two arguments: {% if is_js %}<span translate="repeat">array</span> of arrays{% else %}<span translate="repeat">list</span> of <span translate="repeat">tuples</span>{% endif %} of two integers <span translate="no">({% if is_js %}number{% else %}int{% endif %})</span>, integer.
+</p>
+
+<p>
+    <strong>Output:</strong> Integer or {% if is_js %}null{% else %}None{% endif %}. 
+</p>
+
+
+<p>
+    <strong>Examples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<details>
+    <summary><i>Pss..if you feel yourself in need of a hint, click this line.</i></summary>
+    <p style="text-align: justify;"><i>
+        The base cases of recursion are when <b>t</b> equals 0 or when exactly <b>t</b> minutes remain in some upper chamber (no flips are needed), or when <b>t</b> is smaller than the smallest time remaining in the upper chamber of any hourglass (no solution is possible). Otherwise, update all hourglasses to their new states after <b>m</b> minutes, and loop through all possible subsets of <b>glasses</b> to flip. For each such subset, recursively construct the optimal sequence of moves to measure the remaining <b>t - m</b> minutes, and combine these moves to the best solution. 
+    </i></p>
+</details>
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<!-- <p class="for_info_only">
+
+    <strong>How it’s used:</strong>
+    <i>(math is used everywhere)</i>
+</p> -->
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<!-- <p>
+    <strong>Preconditions:</strong>
+    <ul>
+    <li><i>both given ints should be between -1000 and 1000</i></li>
+    </ul>
+</p> -->
