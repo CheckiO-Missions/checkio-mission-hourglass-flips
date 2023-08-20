@@ -1,0 +1,71 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    Klepsydra jest podana jako tablica {% if is_js %} <b>[upper, lower]</b> {% else %} krotka <b>(upper, lower)</b>{% endif %} dla liczby minut piasku, które są obecnie przechowywane w jej górnej i dolnej komorze, obie komory są wystarczająco duże, aby pomieścić cały piasek w tej klepsydrze. Tak więc po upływie <b>m</b> minut stan tej konkretnej klepsydry będzie wynosił <b>upper - min(upper, m), lower + min(upper, m)</b>. Całkowita ilość piasku wewnątrz klepsydry nigdy się nie zmieni, ani żadna z komór nigdy nie będzie zawierać ujemnego anty-piasku.
+</p>
+<p style="text-align: justify;">
+    Biorąc pod uwagę listę <b>glasses</b>, zadaniem gracza jest znalezienie optymalnej sekwencji ruchów, która pozwoli odmierzyć dokładnie <b>t</b> minut, liczonych jako liczba wykonanych po drodze przesunięć klepsydry. Każdy ruch składa się z dwóch etapów:
+</p>
+
+<ul>
+    <li>najpierw należy poczekać, aż klepsydra, w której aktualnie znajduje się najmniejsza niezerowa <b>m</b> ilość piasku w górnej komorze, wyczerpie się.</li>
+    <li>gdy to nastąpi, należy wybrać <strong>dowolny podzbiór</strong> <b>glasses</b> i natychmiast odwrócić wybrany podzbiór.</li>
+</ul>
+
+<p>
+    Proszę spojrzeć na przykład dla <b>[{% if is_js %}[7, 0], [11, 0]{% else %}(7, 0), (11, 0){% endif %}], 15</b> przypadku. Wyjaśnienie nieco zmienionego przypadku można znaleźć na stronie <a target="_blank" href="https://www.popularmechanics.com/science/math/a27496/riddle-of-the-week-33-the-hourglass-problem/">Polular Mechanics article</a>.
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}flip-of-time-2.png" alt="example" style="max-height: 300px"/>
+</p>
+
+<p>
+   W pierwszym etapie nie ma Pan wyboru co do czekania, ale w drugim etapie cieszy się Pan bogactwem <sup>2n</sup> - 1 możliwych ruchów dla okularów <b>n</b>!
+</p>
+<p style="text-align: justify;">
+    Funkcja ta powinna zwrócić <strong>najmniejszą możliwą liczbę pojedynczych przesunięć klepsydry</strong> potrzebnych do odmierzenia dokładnie <b>t</b> minut, lub {% if is_js %}null{% else %}None{% endif %} jeśli taki dokładny pomiar jest niemożliwy.  
+</p>
+
+
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Dane wejściowe:</strong> Dwa argumenty: {% if is_js %}tablica <span>(array)</span> tablic{% else %}lista <span>(list)</span> krotek <span>(tuples)</span>{% endif %} dwóch liczb całkowitych <span>({% if is_js %}number{% else %}int{% endif %})</span>liczba całkowita.
+</p>
+
+<p>
+   <strong>Wyjście:</strong> Integer lub {% if is_js %}null{% else %}None{% endif %}. 
+</p>
+
+
+<p>
+    <strong>Przykłady:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<details>
+    <summary><i>Pss..jeśli potrzebują Państwo podpowiedzi, proszę kliknąć ten wiersz.</i></summary>
+    <p style="text-align: justify;"><i>
+        Podstawowymi przypadkami rekurencji są sytuacje, gdy <b>t</b> jest równe 0 lub gdy dokładnie <b>t</b> minut pozostało w jakiejś górnej komorze (nie ma potrzeby odwracania), lub gdy <b>t</b> jest mniejsza niż najmniejszy czas pozostały w górnej komorze dowolnej klepsydry (rozwiązanie nie jest możliwe). W przeciwnym razie proszę zaktualizować wszystkie klepsydry do nowych stanów po <b>m</b> minutach i przejść pętlą przez wszystkie możliwe podzbiory <b>glasses</b> do odwrócenia. Dla każdego takiego podzbioru proszę rekurencyjnie skonstruować optymalną sekwencję ruchów, aby zmierzyć pozostały czas <b>t - m</b> minut i połączyć te ruchy w najlepsze rozwiązanie. 
+    </i></p>
+</details>
+
+<p><i>Misja została zaczerpnięta z <span>Python CCPS 109</span>. Jest ona nauczana dla <span>Ryerson Chang School of Continuing Education</span> przez <a href="https://github.com/ikokkari">Ilkka Kokkarinen</a></i></p>
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<!-- <p class="for_info_only">
+
+    <strong>How it’s used:</strong>
+    <i>(math is used everywhere)</i>
+</p> -->
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<!-- <p>
+    <strong>Preconditions:</strong>
+    <ul>
+    <li><i>both given ints should be between -1000 and 1000</i></li>
+    </ul>
+</p> -->
