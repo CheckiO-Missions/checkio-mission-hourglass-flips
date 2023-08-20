@@ -1,0 +1,71 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    Пісочний годинник задано у вигляді масиву {% if is_js %} <b>[upper, lower]</b> {% else %} кортежу <b>(upper, lower)</b>{% endif %} для кількості хвилин піску, які наразі зберігаються у верхній та нижній камерах пісочного годинника, причому обидві камери достатньо великі, щоб вмістити весь пісок у цьому годиннику. Отже, після <b>m</b> хвилин часу, що минули, стан цього пісочного годинника буде <b>upper - min(upper, m), lower + min(upper, m)</b>. Загальна кількість піску всередині пісочного годинника ніколи не змінюється, і жодна з камер ніколи не міститиме від'ємного антипіску.
+</p>
+<p style="text-align: justify;">
+    За заданим списком <b>glasses</b>, ваша задача полягає у тому, щоб знайти оптимальну послідовність ходів, яка дозволить виміряти рівно <b>t</b> хвилин, що рахується як кількість окремих перевертань пісочного годинника, виконаних на цьому шляху. Кожен хід складається з двох етапів:
+</p>
+
+<ul>
+    <li>спочатку потрібно дочекатись, поки у верхній камері пісочного годинника закінчиться найменша ненульова кількість <b>m</b> піску, що знаходиться на даний момент у верхній камері.</li>
+    <li>коли це станеться, виберіть <strong>довільну підмножину</strong> <b>glasses</b> і миттєво переверніть цю підмножину.</li>
+</ul>
+
+<p>
+    Подивіться приклад для випадку <b>[{% if is_js %}[7, 0], [11, 0]{% else %}(7, 0), (11, 0){% endif %}], 15</b> випадку. Ви можете знайти пояснення для дещо зміненого прикладу у <a target="_blank" href="https://www.popularmechanics.com/science/math/a27496/riddle-of-the-week-33-the-hourglass-problem/">Polular Mechanics article</a>.
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}flip-of-time-2.png" alt="example" style="max-height: 300px"/>
+</p>
+
+<p>
+   На першому етапі у вас немає іншого вибору, окрім як чекати, але на другому етапі ви насолоджуєтесь соромом багатства у <sup>2n</sup> - 1 можливих ходів за <b>n</b> окулярів!
+</p>
+<p style="text-align: justify;">
+    Ця функція повинна повертати <strong>найменшу можливу кількість окремих пере</strong> вертань пісочного годинника, необхідних для точного вимірювання <b>t</b> хвилин, або {% if is_js %}null{% else %}None{% endif %}, якщо таке точне вимірювання неможливе.  
+</p>
+
+
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Вхідні дані:</strong> Два аргументи: {% if is_js %}масив <span>(array)</span> масивів{% else %}список <span>(list)</span> кортежів <span>(tuples)</span>{% endif %} двох цілих чисел <span>({% if is_js %}number{% else %}int{% endif %})</span>ціле число.
+</p>
+
+<p>
+   <strong>Вихідні дані:</strong> Ціле число або {% if is_js %}null{% else %}Немає{% endif %}. 
+</p>
+
+
+<p>
+    <strong>Приклади:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<details>
+    <summary><i>Pss... якщо ви відчуваєте, що вам потрібна підказка, натисніть цей рядок.</i></summary>
+    <p style="text-align: justify;"><i>
+        Базові випадки рекурсії - це коли <b>t</b> дорівнює 0 або коли у верхній камері залишається рівно <b>t</b> хвилин (перекидання не потрібні), або коли <b>t</b> менше найменшого часу, що залишився у верхній камері будь-якого пісочного годинника (розв'язок не можливий). У протилежному випадку поновіть усі пісочні годинники до їх нового стану через <b>m</b> хвилин і переберіть усі можливі підмножини <b>glasses</b> для перевертання. Для кожної такої підмножини рекурсивно побудуйте оптимальну послідовність ходів для вимірювання часу, що залишився <b>t - m</b> хвилин, і об'єднайте ці ходи для отримання найкращого розв'язку. 
+    </i></p>
+</details>
+
+<p><i>Задачу було взято з <span>Python CCPS 109</span>. Її викладено для <span>Ryerson Chang School of Continuing Education</span> за допомогою <a href="https://github.com/ikokkari">Ilkka Kokkarinen</a></i></p>
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<!-- <p class="for_info_only">
+
+    <strong>How it’s used:</strong>
+    <i>(math is used everywhere)</i>
+</p> -->
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<!-- <p>
+    <strong>Preconditions:</strong>
+    <ul>
+    <li><i>both given ints should be between -1000 and 1000</i></li>
+    </ul>
+</p> -->
