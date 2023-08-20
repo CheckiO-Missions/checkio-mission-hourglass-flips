@@ -1,0 +1,71 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    沙漏是一个{% if is_js %}数组<b>[upper, lower]</b>{% else %} 元组<b>(upper, lower)</b>{% endif %} ，表示沙漏上下两个腔室中当前存储的沙子的分钟数，这两个腔室都足够大，可以容纳沙漏中的所有沙子。因此，<b>m</b> 分钟后，该沙漏的状态将是<b>upper - min(upper, m), lower + min(upper, m)</b> 。沙漏内的沙子总量永远不会改变，两个沙漏室中也永远不会出现负反沙。
+</p>
+<p style="text-align: justify;">
+    给定一个<b>glasses</b> 的列表，你的任务是找到一个最佳的移动序列，以精确测量<b>t</b> 分钟，并以沿途完成的单个沙漏翻转的次数来计分。每次移动包括两个阶段：
+</p>
+
+<ul>
+    <li>首先，您必须等待上腔中目前装有最低非零量<b>m</b> 沙漏的沙子耗尽。</li>
+    <li>当沙漏耗尽时，选择<b>glasses</b> 的<strong>任意子集</strong>，并立即翻转所选子集。</li>
+</ul>
+
+<p>
+    请看示例 <b>[{% if is_js %}[7, 0], [11, 0]{% else %}(7, 0), (11, 0){% endif %}], 15</b>的例子。您可以在<a target="_blank" href="https://www.popularmechanics.com/science/math/a27496/riddle-of-the-week-33-the-hourglass-problem/">Polular Mechanics article</a> 中找到对略有变化的情况的解释。
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}flip-of-time-2.png" alt="example" style="max-height: 300px"/>
+</p>
+
+<p>
+   在第一阶段，您没有任何等待的选择，但在第二阶段，您可以享受<sup>2n</sup>- 1 种可能的棋步，<b>n</b> 眼镜的尴尬！
+</p>
+<p style="text-align: justify;">
+    该函数应返回精确测量<b>t</b> 分钟所需的<strong>最小单个沙漏翻转次数</strong>，如果不可能精确测量，则返回{% if is_js %}null{% else %}None{% endif %} 。  
+</p>
+
+
+
+<!-- Explain input and output values -->
+<p>
+   <strong>输入：</strong>两个参数：{% if is_js %}数组<span>(array)</span> 数组{% else %}列表<span>(list)</span> 元组<span>(tuples)</span>{% endif %} 两个整数。 <span>({% if is_js %}number{% else %}int{% endif %})</span>，整数。
+</p>
+
+<p>
+   <strong>输出：</strong>整数或{% if is_js %}null{% else %}无{% endif %} 。 
+</p>
+
+
+<p>
+    <strong>示例：</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<details>
+    <summary><i>Pss...if you feel yourself in need of a hint, click this line.</i></summary>
+    <p style="text-align: justify;"><i>
+        递归的基本情况是：当<b>t</b> 等于 0 或某上层沙漏正好剩余<b>t</b> 分钟时（不需要翻转），或当<b>t</b> 小于任何沙漏上层沙漏剩余的最小时间时（无解）。否则，将所有沙漏更新为<b>m</b> 分钟后的新状态，并循环浏览<b>glasses</b> 的所有可能子集，以便翻转。对于每个子集，递归构造出测量剩余<b>t - m</b> 分钟的最佳移动序列，并将这些移动合并为最佳解决方案。 
+    </i></p>
+</details>
+
+<p><i>该任务摘自<span>Python CCPS 109</span> 。它由<span>Ryerson Chang School of Continuing Education</span> 教授。<a href="https://github.com/ikokkari">Ilkka Kokkarinen</a></i></p>
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<!-- <p class="for_info_only">
+
+    <strong>How it’s used:</strong>
+    <i>(math is used everywhere)</i>
+</p> -->
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<!-- <p>
+    <strong>Preconditions:</strong>
+    <ul>
+    <li><i>both given ints should be between -1000 and 1000</i></li>
+    </ul>
+</p> -->
