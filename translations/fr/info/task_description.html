@@ -1,0 +1,71 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    Un sablier est donné sous la forme d'un tableau {% if is_js %} <b>[upper, lower]</b> {% else %} tuple <b>(upper, lower)</b>{% endif %} pour le nombre de minutes de sable qui sont actuellement stockées dans ses chambres supérieure et inférieure, les deux chambres étant suffisamment grandes pour contenir tout le sable de ce sablier. Ainsi, après que <b>m</b> minutes se soient écoulées, l'état de ce sablier particulier sera <b>upper - min(upper, m), lower + min(upper, m)</b>. La quantité totale de sable à l'intérieur du sablier ne change jamais, et aucune des chambres ne contient d'anti-sable négatif.
+</p>
+<p style="text-align: justify;">
+    Étant donné une liste de <b>glasses</b>, votre tâche consiste à trouver une séquence optimale de mouvements pour mesurer exactement <b>t</b> minutes, notées comme le nombre de retournements individuels du sablier effectués en cours de route. Chaque mouvement se compose de deux étapes:
+</p>
+
+<ul>
+    <li>vous devez d'abord attendre que le sablier qui contient actuellement la plus petite quantité non nulle <b>m</b> de sable dans sa chambre supérieure s'épuise.</li>
+    <li>lorsque cela se produit, choisissez <strong>un sous-ensemble quelconque</strong> de <b>glasses</b> et retournez instantanément ce sous-ensemble choisi.</li>
+</ul>
+
+<p>
+    Regardez l'exemple de <b>[{% if is_js %}[7, 0], [11, 0]{% else %}(7, 0), (11, 0){% endif %}], 15</b> cas. Vous trouverez une explication pour les cas légèrement modifiés sur le site <a target="_blank" href="https://www.popularmechanics.com/science/math/a27496/riddle-of-the-week-33-the-hourglass-problem/">Polular Mechanics article</a>.
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}flip-of-time-2.png" alt="example" style="max-height: 300px"/>
+</p>
+
+<p>
+   Vous n'avez pas le choix d'attendre dans la première étape, mais dans la deuxième étape, vous bénéficiez d'un embarras de richesses de <sup>2n</sup> - 1 mouvements possibles pour <b>n</b> verres!
+</p>
+<p style="text-align: justify;">
+    Cette fonction doit renvoyer <strong>le plus petit nombre possible de retournements individuels du sablier</strong> nécessaires pour mesurer exactement <b>t</b> minutes, ou {% if is_js %}null{% else %}None{% endif %} si cette mesure exacte est impossible.  
+</p>
+
+
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Entrée:</strong> Deux arguments: {% if is_js %}tableau <span>(array)</span> de tableaux{% else %}liste <span>(list)</span> de tuples{% endif %} de deux entiers <span>({% if is_js %}number{% else %}int{% endif %})</span>entier, entier.
+</p>
+
+<p>
+   <strong>Sortie:</strong> Entier ou {% if is_js %}null{% else %}None{% endif %}. 
+</p>
+
+
+<p>
+    <strong>Exemples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<details>
+    <summary><i>Pss..si vous avez besoin d'un indice, cliquez sur cette ligne.</i></summary>
+    <p style="text-align: justify;"><i>
+        Les cas de base de la récursion sont lorsque <b>t</b> est égal à 0 ou lorsqu'il reste exactement <b>t</b> minutes dans une chambre haute (aucun retournement n'est nécessaire), ou lorsque <b>t</b> est plus petit que le plus petit temps restant dans la chambre haute d'un sablier (aucune solution n'est possible). Sinon, mettez tous les sabliers dans leur nouvel état après <b>m</b> minutes, et parcourez en boucle tous les sous-ensembles possibles de <b>glasses</b> à retourner. Pour chacun de ces sous-ensembles, construisez récursivement la séquence optimale de mouvements pour mesurer les minutes restantes <b>t - m</b>, et combinez ces mouvements pour obtenir la meilleure solution. 
+    </i></p>
+</details>
+
+<p><i>La mission est tirée de <span>Python CCPS 109</span>. Elle est enseignée pour <span>Ryerson Chang School of Continuing Education</span> par <a href="https://github.com/ikokkari">Ilkka Kokkarinen</a></i></p>
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<!-- <p class="for_info_only">
+
+    <strong>How it’s used:</strong>
+    <i>(math is used everywhere)</i>
+</p> -->
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<!-- <p>
+    <strong>Preconditions:</strong>
+    <ul>
+    <li><i>both given ints should be between -1000 and 1000</i></li>
+    </ul>
+</p> -->
