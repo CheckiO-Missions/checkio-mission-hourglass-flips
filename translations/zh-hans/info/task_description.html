@@ -1,4 +1,4 @@
-<!-- Describe task in general -->
+<img src="{{MEDIA_CONVERT}}title.png" class="title_img" />
 
 <p style="text-align: justify;">
     沙漏是一个{% if is_js %}数组<b>[upper, lower]</b>{% else %} 元组<b>(upper, lower)</b>{% endif %} ，表示沙漏上下两个腔室中当前存储的沙子的分钟数，这两个腔室都足够大，可以容纳沙漏中的所有沙子。因此，<b>m</b> 分钟后，该沙漏的状态将是<b>upper - min(upper, m), lower + min(upper, m)</b> 。沙漏内的沙子总量永远不会改变，两个沙漏室中也永远不会出现负反沙。
