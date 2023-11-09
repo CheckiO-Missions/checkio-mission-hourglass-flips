@@ -95,9 +95,11 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
                 },
                 hourglass_reverse: {
                     'stroke': 'orange',
+                    'stroke': '#FABA00',
                     'stroke-linecap': 'round',
                     'stroke-linejoin': 'round',
                     'fill': 'orange',
+                    'fill': '#FABA00',
                 },
                 hourglass_empty: {
                     'stroke': '#65A1CF',
