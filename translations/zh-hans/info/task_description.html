@@ -45,12 +45,7 @@
 
 <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 
-<details>
-    <summary><i>Pss...if you feel yourself in need of a hint, click this line.</i></summary>
-    <p style="text-align: justify;"><i>
-        递归的基本情况是：当<b>t</b> 等于 0 或某上层沙漏正好剩余<b>t</b> 分钟时（不需要翻转），或当<b>t</b> 小于任何沙漏上层沙漏剩余的最小时间时（无解）。否则，将所有沙漏更新为<b>m</b> 分钟后的新状态，并循环浏览<b>glasses</b> 的所有可能子集，以便翻转。对于每个子集，递归构造出测量剩余<b>t - m</b> 分钟的最佳移动序列，并将这些移动合并为最佳解决方案。 
-    </i></p>
-</details>
+
 
 <p><i>该任务摘自<span>Python CCPS 109</span> 。它由<span>Ryerson Chang School of Continuing Education</span> 教授。<a href="https://github.com/ikokkari">Ilkka Kokkarinen</a></i></p>
 <!-- Here you can explain how it can be used in development -->
